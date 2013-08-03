@@ -1,0 +1,9 @@
+*.swp
+*.o
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+bruco_pipe
+test_server
+
