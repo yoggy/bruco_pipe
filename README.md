@@ -1,6 +1,6 @@
 bruco_pipe
 ================
-bruco_pipe is simple intrusion prevention proxy.
+bruco_pipe is simple intrusion prevention pipe filter.
 
 
 requirements
