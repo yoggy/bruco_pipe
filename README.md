@@ -19,7 +19,6 @@ build
 <pre>
 $ git clone https://github.com/yoggy/bruco_pipe.git
 $ cd bruco_pipe
-$ cmake .
 $ make
 </pre>
 

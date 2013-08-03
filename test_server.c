@@ -4,9 +4,11 @@
 
 int main(int argc, char *argv[])
 {
+	int i;
+
 	setvbuf(stdout, NULL, _IONBF, 0);
 
-	for (int i = 0; i < 5; ++i) {
+	for (i = 0; i < 5; ++i) {
 		printf("test%d\n", i);
 		sleep(1);
 	}
