@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 		printf("test%d\n", i);
 		sleep(1);
 	}
-	printf("bbbb\n");
+	printf("bbbb\n"); // <- break session keywork
 
 	return 0;
 }
