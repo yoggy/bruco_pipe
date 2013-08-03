@@ -31,11 +31,11 @@ usage : ./bruco_pipe config_file command [arg1] [arg2]...
     $ ./bruco_pipe sample_config.txt /path/to/program
 
 $ ./bruco_pipe sample_config.txt /bin/date
-2013-08-01T11:25:37+0900 [I] listen start...port=12345
+2013-08-03T19:59:12+0900 [D] dump_stream : [out_bound] Sat Aug  3 19:59:12 JST 2013\x0a  <- stderr
 
 $ ./bruco_pipe sample_config.txt ./test_server
-2013-08-03T18:56:57+0900 [D] dump_stream : [out_bound] test0\x0a
-test0
+2013-08-03T18:56:57+0900 [D] dump_stream : [out_bound] test0\x0a   <- stderr
+test0                                                              <- stdout
 2013-08-03T18:56:58+0900 [D] dump_stream : [out_bound] test1\x0a
 test1
 2013-08-03T18:56:59+0900 [D] dump_stream : [out_bound] test2\x0a
@@ -45,7 +45,7 @@ test3
 2013-08-03T18:57:01+0900 [D] dump_stream : [out_bound] test4\x0a
 test4
 2013-08-03T18:57:02+0900 [D] dump_stream : [out_bound] bbbb\x0a
-2013-08-03T18:57:02+0900 [W] break_session : type=outbound_deny_re, outbound_re=\x62\x62\x62\x62
+2013-08-03T18:57:02+0900 [W] break_session : type=outbound_deny_re, outbound_re=\x62\x62\x62\x62  <- pipe disconnect
 </pre>
 
 config file
