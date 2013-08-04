@@ -20,6 +20,12 @@ $(OBJECTS): %.o : %.cpp
 test_server: test_server.c
 	gcc $(CFLAGS) $< -o $@
 
+test: bruco_pipe test_server
+	@echo "======== normal exec ========"
+	./test_server
+	@echo "======== bruco_pipe exec ========"
+	./test_server.sh
+
 clean:
 	rm -rf $(OBJECTS)
 	rm -rf bruco_pipe test_server
