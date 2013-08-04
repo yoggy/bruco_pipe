@@ -3,11 +3,28 @@
 #include <fstream>
 #include <sstream>
 
+#include <sys/time.h>
+
 #include "log.hpp"
 #include "string.hpp"
 
+Mutex BrucoSession::session_id_mutex_;
+
+long BrucoSession::get_session_id()
+{
+	ScopedLock lock(session_id_mutex_);
+
+	struct timespec ts;
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+
+	
+
+	return 12345;
+}
+
 BrucoSession::BrucoSession(int argc, char *argv[], const int &buf_size)
 	: BrucoPipe(argc, argv, buf_size),
+	session_id_(0),
 	outbound_key_check_(false), outbound_key_check_xor256_(false), 
 	inbound_jmpcall_check_(false), 
 	inbound_pass_re_(NULL), inbound_deny_re_(NULL), 
@@ -15,7 +32,7 @@ BrucoSession::BrucoSession(int argc, char *argv[], const int &buf_size)
 	inbound_default_pass_(false), outbound_default_pass_(false),
 	dump_stream_(false)
 {
-
+	session_id_ = get_session_id();
 }
 
 BrucoSession::~BrucoSession()
@@ -83,7 +100,7 @@ void BrucoSession::on_recv(const char *buf, int buf_size)
 	std::string target_str(buf, buf_size);
 
 	if (dump_stream_) {
-		log_d("dump_stream : [in_bound] %s", escape(target_str).c_str());
+		log_d("dump_stream : session=%ld : [in_bound] %s", session_id_, escape(target_str).c_str());
 	}
 
 	if (inbound_jmpcall_check_) {
@@ -125,7 +142,7 @@ void BrucoSession::on_recv_proxy(const char *buf, int buf_size)
 {
 	std::string target_str(buf, buf_size);
 	if (dump_stream_) {
-		log_d("dump_stream : [out_bound] %s", escape(target_str).c_str());
+		log_d("dump_stream : session=%ld : [out_bound] %s", session_id_, escape(target_str).c_str());
 	}
 
 	if (outbound_key_check_xor256_) {

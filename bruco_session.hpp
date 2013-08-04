@@ -3,6 +3,7 @@
 
 #include <re2/re2.h>
 #include "bruco_pipe.hpp"
+#include "lock.hpp"
 
 class BrucoSession : public BrucoPipe
 {
@@ -36,6 +37,7 @@ class BrucoSession : public BrucoPipe
 		bool check_jmpcall_(const std::string &key);
 
 	protected:
+		long session_id_;
 		bool outbound_key_check_;
 		bool outbound_key_check_xor256_;
 		std::string outbound_key_file_;
@@ -51,6 +53,10 @@ class BrucoSession : public BrucoPipe
 		bool outbound_default_pass_;
 
 		bool dump_stream_;
+
+	protected:
+		static long get_session_id();
+		static Mutex session_id_mutex_;
 };
 
 #endif // #define __BRUCO_SESSION_HPP__
