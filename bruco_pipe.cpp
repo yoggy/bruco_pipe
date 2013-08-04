@@ -62,8 +62,8 @@ bool BrucoPipe::start()
 		dup2(pipe_out_, fileno(stdout));
 		dup2(pipe_in_,  fileno(stdin));
 
-		close(pipe_out_);
-		close(pipe_in_);
+		//close(pipe_out_);
+		//close(pipe_in_);
 
 		execv(path_, argv_);
 	}
@@ -124,7 +124,7 @@ int BrucoPipe::send(const char *buf, int buf_size)
 
 void BrucoPipe::on_recv(const char *buf, int buf_size)
 {
-    // log_d("on_recv() : size=%d, data=%s", buf_size, buf);
+    //log_d("on_recv() : size=%d, data=%s", buf_size, buf);
 
     // client -> proxy -> server
     send_proxy(buf, buf_size);

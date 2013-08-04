@@ -6,6 +6,7 @@
 #include <time.h>
 
 #include <string>
+#include "string.hpp"
 
 int output_log_level_ = LOGGING_LEVEL_DEBUG;
 int output_string_length_ = 1024;
@@ -43,11 +44,11 @@ void udp_log_message_output_(const char *buf, const int &size)
 
 void log_message_output_(const char *time_str, const char *level_str, const char *msg)
 {
-	int buf_size = strlen(time_str) + 1 + strlen(level_str) + 1 + strlen(msg) + 1;
+	int buf_size = strlen(time_str) + 1 + strlen(level_str) + 1 + strlen(msg) + 16;
 	char *buf = (char*)malloc(buf_size);
 	memset(buf, 0, buf_size);
 
-	snprintf(buf, buf_size, "%s %s %s\n", time_str, level_str, msg);
+	snprintf(buf, buf_size, "%s %s %s\r\n", time_str, level_str, msg);
 
 	fprintf(stderr, "%s", buf);
 	fflush(stderr);
