@@ -65,12 +65,27 @@ output_log_level = 0
 # max output string length
 output_string_length = 1024
 
+# udp log output
+udp_log_output_enable = false
+udp_log_output_host   = 127.0.0.1
+udp_log_output_port   = 12345
+
 # dump stream (true / false)
-dump_stream = false
+dump_stream = true
 
-# regular expression check
-inbound_deny  = test\x61\x61\x61\x61
-outbound_deny = test\x62\x62\x62\x62
+# nice() setting
+nice = 5
 
+# regular expression (deny)
+inbound_deny  = \x62\x62\x62\x62
+outbound_deny = \x62\x62\x62\x62
+
+# regular expression (pass)
+#inbound_pass  = \x62\x62\x62\x62
+#outbound_pass = \x62\x62\x62\x62
+
+# default policy (true / false)
+inbound_default_pass  = true
+outbound_default_pass = true
 </pre>
 
