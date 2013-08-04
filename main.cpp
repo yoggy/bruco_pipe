@@ -42,6 +42,12 @@ int main(int argc, char *argv[])
 	// logging settings
 	set_output_log_level(cf->get_int("output_log_level"));
 	set_output_string_length(cf->get_int("output_string_length"));
+	if (cf->get_int("udp_log_output_enable")) {
+		start_udp_log_output(
+			cf->get_string("udp_log_output_host").c_str(),
+			cf->get_int("udp_log_output_port")
+		);
+	}
 
 	// build command
 	std::stringstream ss;

@@ -13,6 +13,9 @@ extern "C" {
 void set_output_log_level(const int level);
 void set_output_string_length(const int level);
 
+void start_udp_log_output(const char *host, const int &port);
+void stop_udp_log_output();
+
 void log_message_format_(const char *file, int line, const char *func, int level, const char *fmt, ...);
 
 #define log_e(...) {log_message_format_(__FILE__, __LINE__, __FUNCTION__, LOGGING_LEVEL_ERROR, __VA_ARGS__);}
