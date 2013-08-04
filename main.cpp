@@ -25,7 +25,6 @@ int main(int argc, char *argv[])
 {
 	if (argc < 3) usage();
 
-
 	// load config
 	std::string config_file = argv[1];
 	if (Config::load(config_file) == false) {

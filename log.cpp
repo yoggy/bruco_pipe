@@ -51,7 +51,7 @@ void udp_log_message_output_(const char *buf, const int &size)
 
 void log_message_output_(const char *time_str, const char *level_str, const char *msg)
 {
-	int buf_size = strlen(time_str) + 1 + strlen(level_str) + 1 + strlen(msg) + 16;
+	int buf_size = strlen(time_str) + 1 + strlen(level_str) + 1 + strlen(msg) + 3;
 	char *buf = (char*)malloc(buf_size);
 	memset(buf, 0, buf_size);
 
@@ -61,7 +61,7 @@ void log_message_output_(const char *time_str, const char *level_str, const char
 	fflush(stderr);
 
 	if (udp_socket_ != -1) {
-		udp_log_message_output_(buf, buf_size);
+		udp_log_message_output_(buf, buf_size-1);
 	}
 
 	free(buf);
