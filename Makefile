@@ -1,6 +1,6 @@
 TARGET = all 
 
-FILES = main config lock log string bruco_session bruco_pipe
+FILES = main config lock log udp string bruco_session bruco_pipe
 
 OBJECTS = $(addsuffix .o,$(FILES))
 

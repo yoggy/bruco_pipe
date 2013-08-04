@@ -25,12 +25,13 @@ int main(int argc, char *argv[])
 {
 	if (argc < 3) usage();
 
+
+	// load config
 	std::string config_file = argv[1];
 	if (Config::load(config_file) == false) {
 		log_e("config_file load failed....config_file=%s", config_file.c_str());
 		return -1;
 	}
-
 	Config *cf = Config::getInstance();
 
 	// nice setting
@@ -42,7 +43,7 @@ int main(int argc, char *argv[])
 	// logging settings
 	set_output_log_level(cf->get_int("output_log_level"));
 	set_output_string_length(cf->get_int("output_string_length"));
-	if (cf->get_int("udp_log_output_enable")) {
+	if (cf->get_bool("udp_log_output_enable")) {
 		start_udp_log_output(
 			cf->get_string("udp_log_output_host").c_str(),
 			cf->get_int("udp_log_output_port")

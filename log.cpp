@@ -5,16 +5,11 @@
 
 #include <time.h>
 
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <netdb.h>
-
 #include <string.h>
 #include <string>
+
 #include "string.hpp"
+#include "udp.hpp"
 
 int output_log_level_ = LOGGING_LEVEL_DEBUG;
 int output_string_length_ = 1024;
@@ -34,6 +29,9 @@ void set_output_string_length(const int level)
 void start_udp_log_output(const char *host, const int &port)
 {
 	stop_udp_log_output();
+
+	log_d("start_udp_log_output() host=%s, port=%d", host, port);
+	udp_socket_ = open_udp(host, port);
 }
 
 void stop_udp_log_output()
@@ -47,7 +45,8 @@ void stop_udp_log_output()
 void udp_log_message_output_(const char *buf, const int &size)
 {
 	if (udp_socket_ == -1) return;
-
+	
+	::send(udp_socket_, buf, size, 0);
 }
 
 void log_message_output_(const char *time_str, const char *level_str, const char *msg)

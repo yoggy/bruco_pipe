@@ -6,7 +6,7 @@ output_string_length = 1024
 
 # udp log output
 udp_log_output_enable = true
-udp_log_output_host   = ::1
+udp_log_output_host   = 127.0.0.1
 udp_log_output_port   = 12345
 
 # dump stream (true / false)
