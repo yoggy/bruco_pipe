@@ -8,18 +8,23 @@
 #include "log.hpp"
 #include "string.hpp"
 
+#include <iostream>
+
 Mutex BrucoSession::session_id_mutex_;
 
 long BrucoSession::get_session_id()
 {
 	ScopedLock lock(session_id_mutex_);
 
+	// like GetTickCount()?
 	struct timespec ts;
 	clock_gettime(CLOCK_MONOTONIC, &ts);
+	long long tick = (long long)ts.tv_sec * 1000 + (long long)ts.tv_nsec / 1000 / 1000;
 
-	
+	// create session_id from tick
+	long session_id = tick % 1000000000;
 
-	return 12345;
+	return session_id;
 }
 
 BrucoSession::BrucoSession(int argc, char *argv[], const int &buf_size)
