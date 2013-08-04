@@ -13,13 +13,20 @@ requirements
   $ make install
 </pre>
 
-
 build
 ================
+for Linux, FreeBSD
 <pre>
 $ git clone https://github.com/yoggy/bruco_pipe.git
 $ cd bruco_pipe
 $ make
+</pre>
+
+for Mac OS X
+<pre>
+$ git clone https://github.com/yoggy/bruco_pipe.git
+$ cd bruco_pipe
+$ make CFLAGS=-DMAC_OS_X
 </pre>
 
 run
