@@ -40,7 +40,7 @@ BrucoPipe::~BrucoPipe()
 void BrucoPipe::break_session()
 {
 	break_flag_ = true;
-	//kill(child_pid_, SIGKILL);
+	kill(child_pid_, SIGKILL);
 }
 
 bool BrucoPipe::start()
