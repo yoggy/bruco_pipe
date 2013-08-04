@@ -26,6 +26,12 @@ Config::~Config()
 {
 }
 
+bool Config::has_key(const std::string &key)
+{
+	if (map_.find(key) == map_.end()) return false;
+	return true;
+}
+
 bool Config::get_bool(const std::string &key)
 {
 	std::string val = get_string(key);
@@ -41,7 +47,7 @@ int Config::get_int(const std::string &key)
 
 std::string Config::get_string(const std::string &key)
 {
-	if (map_.find(key) == map_.end()) {
+	if (has_key(key)) {
 		return std::string();
 	}
 	return map_[key];
