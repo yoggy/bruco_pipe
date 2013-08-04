@@ -2,9 +2,11 @@
 #include "log.hpp"
 
 #include <stdio.h>
+#include <signal.h>
+#include <sys/types.h>
 
 BrucoPipe::BrucoPipe(int argc, char *argv[], const int &buf_size)
-	: buf_(NULL), buf_size_(buf_size), break_flag_(false), pipe_out_(-1), pipe_in_(-1),
+	: child_pid_(-1), buf_(NULL), buf_size_(buf_size), break_flag_(false), pipe_out_(-1), pipe_in_(-1),
 	inbound_count_(0), outbound_count_(0), inbound_total_bytes_(0), outbound_total_bytes_(0)
 {
 	path_ = argv[2];
@@ -36,6 +38,7 @@ BrucoPipe::~BrucoPipe()
 void BrucoPipe::break_session()
 {
 	break_flag_ = true;
+	kill(child_pid_, SIGKILL);
 }
 
 bool BrucoPipe::start()
@@ -50,7 +53,9 @@ bool BrucoPipe::start()
 	pipe_in_  = pipefd[0];
 	pipe_out_ = pipefd[1];
 
-	if (fork()) {
+	child_pid_ = fork();
+
+	if (child_pid_) {
 		// child
 		dup2(pipe_out_, fileno(stdout));
 		dup2(pipe_in_,  fileno(stdin));

@@ -25,6 +25,8 @@ class BrucoPipe {
 		char *path_;
 		char **argv_;
 
+		pid_t child_pid_;
+
 		char *buf_;
 		int  buf_size_;
 
