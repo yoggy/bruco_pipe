@@ -4,8 +4,8 @@ FILES = main config lock log string bruco_session bruco_pipe
 
 OBJECTS = $(addsuffix .o,$(FILES))
 
-CFLAGS   = -O -Wall
-CPPFLAGS = -O -Wall
+CFLAGS   = -Wall -g
+CPPFLAGS = -Wall -g
 INCLUDES = -I/usr/local/include
 LIBS     = -L/usr/local/lib -lre2
 

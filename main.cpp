@@ -33,6 +33,12 @@ int main(int argc, char *argv[])
 
 	Config *cf = Config::getInstance();
 
+	// nice setting
+	if (cf->has_key("nice")) {
+		int nice_val = cf->get_int("nice");
+		nice(nice_val);
+	}
+
 	// logging settings
 	set_output_log_level(cf->get_int("output_log_level"));
 	set_output_string_length(cf->get_int("output_string_length"));

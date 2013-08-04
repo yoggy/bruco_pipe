@@ -7,6 +7,9 @@ output_string_length = 1024
 # dump stream (true / false)
 dump_stream = true
 
+# nice() setting
+nice = 5
+
 # hash key check in outbound connection (true / false)
 outbound_key_check        = true
 outbound_key_check_xor256 = false
