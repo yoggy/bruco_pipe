@@ -26,11 +26,12 @@ for Mac OS X
 <pre>
 $ git clone https://github.com/yoggy/bruco_pipe.git
 $ cd bruco_pipe
-$ make CFLAGS=-DMAC_OS_X
+$ make CPPFLAGS=-DMAC_OS_X
 </pre>
 
 run
 ================
+see the "make test" for more information...
 <pre>
 usage : ./bruco_pipe config_file command [arg1] [arg2]...
 
