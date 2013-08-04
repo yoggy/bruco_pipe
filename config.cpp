@@ -47,7 +47,7 @@ int Config::get_int(const std::string &key)
 
 std::string Config::get_string(const std::string &key)
 {
-	if (has_key(key)) {
+	if (!has_key(key)) {
 		return std::string();
 	}
 	return map_[key];
