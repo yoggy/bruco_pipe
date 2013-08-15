@@ -9,7 +9,7 @@ long long get_tick_count()
 {
 	long long tick = 0;
 #ifdef MAC_OS_X
-	if (get_tick_count_start_t = 0) {
+	if (get_tick_count_start_t == 0) {
 		get_tick_count_start_t = mach_absolute_time();
 	}
 
