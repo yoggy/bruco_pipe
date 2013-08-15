@@ -8,7 +8,6 @@
 #include <string.h>
 #include <string>
 
-#include "string.hpp"
 #include "udp.hpp"
 
 int output_log_level_ = LOGGING_LEVEL_DEBUG;
