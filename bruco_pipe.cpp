@@ -57,7 +57,7 @@ bool BrucoPipe::start()
 
 	child_pid_ = fork();
 
-	if (child_pid_) {
+	if (!child_pid_) {
 		// child
 		dup2(pipe_out_, fileno(stdout));
 		dup2(pipe_in_,  fileno(stdin));
