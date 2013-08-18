@@ -62,8 +62,8 @@ bool BrucoPipe::start()
 		dup2(pipe_out_, fileno(stdout));
 		dup2(pipe_in_,  fileno(stdin));
 
-		//close(pipe_out_);
-		//close(pipe_in_);
+		close(pipe_out_);
+		close(pipe_in_);
 
 		execv(path_, argv_);
 	}
